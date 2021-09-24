@@ -3,13 +3,13 @@ I - Fonction du scipt
 Le script install_apache.py configure un serveur Web avec apache2 et configure un site www.monsite.com
 Les fichiers du site web sont hebergés sur le serveur dans le dossier pagesweb
 Les étapes de la configuration du serveur permettent:
-1 /  d'installaler le serveur apache2
-2/   De configurer le fichier du  site à partir des informations du site fournies par l'utilisateur. 
+1/ D'installaler le serveur apache2
+2/ De configurer le fichier du  site à partir des informations du site fournies par l'utilisateur. 
 Ces informations de base sont: - le nom de domaine et l'adresse mail de l'administrateur du site. 
-Ces informations permettent de générer le fichier config du site suivant "001-adressedusite.conf". 
-Ce fichier est basique mais sa modification manuelle peut permettre d'améliorer le site
+Ces informations permettent de générer le fichier config du site suivant "001-monsite.com.conf".
+Ce fichier est basique mais sa modification manuelle peut permettre d'améliorer le site. Un lien symbolique est crée également
 3/   de créer un dossier pour heberger les fichiers du site (dans /var/www/html /adressedusite
-4/   de copier les fichier du site du dossier pagesweb dans le dossier du site
+4/   de copier les fichiers du site du dossier pagesweb dans le dossier du site
 
 II - Utilisation du programme
 
