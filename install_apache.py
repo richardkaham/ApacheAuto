@@ -3,7 +3,6 @@ def install_apache2():
     os.system("sudo apt-get install apache2")
     os.system("clear")
     config_site()
-
 def config_site():
     vhost=["<VirtualHost *:80>",
             "ServerAdmin ",
@@ -30,16 +29,17 @@ def config_site():
     print(cheminsite)
     input("une touche ....")
     with open("virtual","w") as flux:
-         for ligne in vhost:
-            print(ligne)
+        for ligne in vhost:
+    #  print(ligne)
             flux.write("%s\n" %ligne)
-
-    dossier = "sudo mkdir /var/www/html/"+nomsite
-    os.system(dossier)   # créer le dossier du site
-    copiehtml = "sudo cp photopays/*.html /var/www/html/"+nomsite+"/"
-    copiejpeg = "sudo cp photopays/*.jpeg /var/www/html/"+nomsite+"/"
-    os.system(copiehtml)
-    os.system(copiejpeg)
+    dossier = "/var/www/html/"+nomsite
+    if(os.path.isdir(nomsite)):
+        print("existe")
+    else:
+        creer_dossier = "sudo mkdir "+dossier
+        os.system(creer_dossier)   # créer le dossier du site
+    copie_pages_web = "sudo cp  pagesweb/*.* /var/www/html/"+nomsite+"/"
+    os.system(copie_pages_web)
 #  print("creation du line symbolique")
     lien = "sudo a2ensite "+"001-"+nomsite
     os.system("sudo cp virtual /etc/apache2/sites-available/"+siteconf)
@@ -47,14 +47,11 @@ def config_site():
 # input("lien ok, tapez une touhce pour recharger apache2")
     os.system("systemctl reload apache2.service")
 #  input("tout est ok, tapez une touhce pour continuer")
-
 def desinst_apache2():
 # Arrêt apache2.
     os.system("sudo service apache2 stop")
 # autoremove pour se débarrasser des autres dépendances.
     os.system("sudo apt-get autoremove apache2")
-
-
 import os
 import csv
 lchoix = ["i = Installer et configurer Apache","d = désinstaller apache","q = Quiter"]
@@ -73,7 +70,3 @@ while ch.upper() != 'Q':
         print("désinstallation")
         desinst_apache2()
     os.system("clear")
-print("aurevoir")
-
-# config_site()
-
